@@ -2,7 +2,7 @@
 
 A way to defer hooks to reduce dependencies.
 
-Sometimes we need callbacks that break dependencies. This gem allows to invert those dependencies.
+Sometimes we need callbacks that break architectural dependencies. This gem allows to invert those dependencies.
 
 ## Installation
 
@@ -114,6 +114,9 @@ module IssueTracker
   end
 end
 ```
+
+> [!NOTE]
+> You can call the hook whatever you want. The only constraint is if you use the [Rails integration](#rails-callbacks), as you see below.
 
 #### Interface Declaration
 
