@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.license = 'MIT'
 
   spec.summary = 'A way to defer hooks to reduce dependencies.'
-  spec.description = 'Sometimes we need callbacks that break dependencies. This gem allows to invert those ' \
-                     'dependencies.'
+  spec.description = 'Sometimes we need callbacks that break architectural dependencies. This gem allows to ' \
+                     'invert those dependencies.'
   spec.homepage = 'https://github.com/moku-io/hidden_hooks'
   spec.required_ruby_version = '>= 3.0.0'
 
