@@ -44,3 +44,5 @@ module HiddenHooks
     LookUpProxy.new klass
   end
 end
+
+require_relative 'hidden_hooks/active_record'
