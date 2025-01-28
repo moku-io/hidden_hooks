@@ -8,6 +8,13 @@
 ### Bug fixes
 )-->
 
+## 1.1.1 2025-01-28
+
+### Bug fixes
+
+- Removed `around_*` callbacks.
+  - The problem with `around_*` callbacks is that the callback needs to yield to the passed block otherwise the callback chain stops, so if there aren't hooks for a certain callback no one's yielding and the chain always stops.
+
 ## 1.1.0 2025-01-28
 
 ### New features
