@@ -6,14 +6,21 @@ module HiddenHooks
 
     included do
       [
+        :after_commit,
         :after_create,
+        :after_create_commit,
         :after_destroy,
+        :after_destroy_commit,
         :after_find,
         :after_initialize,
+        :after_rollback,
         :after_save,
+        :after_save_commit,
         :after_touch,
         :after_update,
+        :after_update_commit,
         :after_validation,
+        :before_commit,
         :before_create,
         :before_destroy,
         :before_save,
