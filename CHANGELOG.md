@@ -8,6 +8,14 @@
 ### Bug fixes
 )-->
 
+## 1.1.2 2025-01-28
+
+### Bug fixes
+
+- Fixed Active Record integration not setting callbacks for derived classes.
+- Removed `after_*_commit` shortcut hooks.
+  - These aren't actually callbacks, but little more than wrappers for `after_commit` itself, so the method that gets called on the callback object is always `#after_commit`, causing some weird behaviors.
+
 ## 1.1.1 2025-01-28
 
 ### Bug fixes
