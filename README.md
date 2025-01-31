@@ -120,11 +120,31 @@ end
 
 #### Interface Declaration
 
-A class `C` declares the interface through `HiddenHooks[C]`. Calling a method on the returned proxy will call every hook that someone else defined, forwarding any argument. 
+A class `C` declares the interface through `HiddenHooks[C]`. Calling a method on the returned proxy will call every hook that someone else defined, forwarding any argument.
+
+```ruby
+class User
+  def confirm!
+    HiddenHooks[User].before_confirmation self
+    @confirmed = true
+    HiddenHooks[User].after_confirmation self
+  end
+end
+```
 
 #### Hook Definition
 
 Whenever you want to define a hook, you simply call `HiddenHooks.hook_up`. Inside the block, you can call any method and pass it a class and a block: the block will become a hook for that class.
+
+```ruby
+class Admin
+  HiddenHooks.hook_up do
+    before_confirmation User do |user|
+      Admin.first.notify! "#{user.name} is being confirmed."
+    end
+  end
+end
+```
 
 #### Rails Callbacks
 
