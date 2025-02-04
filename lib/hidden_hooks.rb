@@ -11,8 +11,16 @@ module HiddenHooks
   class SetUpProxy
     private
 
-    def method_missing hook, klass, &block
-      ::HiddenHooks.hooks[klass][hook] << block
+    def method_missing hook, klass, context: nil, &block
+      ::HiddenHooks.hooks[klass][hook] << if context.nil?
+                                            block
+                                          else
+                                            proc do |*args, **kwargs, &hook_block|
+                                              context
+                                                .call(*args, **kwargs, &hook_block)
+                                                .instance_exec(*args, hook_block, **kwargs, &block)
+                                            end
+                                          end
     end
 
     def respond_to_missing? _, _=false
