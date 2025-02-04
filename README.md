@@ -146,6 +146,18 @@ class Admin
 end
 ```
 
+You can provide a callable `context`, which will be invoked with the same parameters as the hook. Its result will be bound to `self` inside the hook.
+
+```ruby
+class Admin
+  HiddenHooks.hook_up do
+    before_confirmation User, context: proc { Admin.first } do |user|
+      notify! "#{user.name} is being confirmed."
+    end
+  end
+end
+```
+
 #### Rails Callbacks
 
 Thanks to the [callback objects](https://guides.rubyonrails.org/active_record_callbacks.html#callback-objects) system, in Rails you can simply pass the proxy to the callback methods:
