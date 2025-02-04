@@ -8,6 +8,12 @@
 ### Bug fixes
 )-->
 
+## 1.2.0 2025-02-04
+
+### New features
+
+- Added the `context` keyword parameter for hooks.
+
 ## 1.1.2 2025-01-28
 
 ### Bug fixes
