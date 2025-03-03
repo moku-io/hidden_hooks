@@ -54,7 +54,9 @@ module HiddenHooks
               "There must be at most one hook `#{hook_name}` defined for class #{@klass}"
       end
 
-      hooks.each { |hook| hook.call(*args, **kwargs, &block) }
+      hooks
+        .map { |hook| hook.call(*args, **kwargs, &block) }
+        .then { |results| @sole ? results.first : results }
     end
 
     def respond_to_missing? _, _=false
