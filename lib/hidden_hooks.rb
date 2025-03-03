@@ -56,7 +56,7 @@ module HiddenHooks
 
       hooks
         .map { |hook| hook.call(*args, **kwargs, &block) }
-        .then { |results| @sole ? results.first : results }
+        .then { |results| (@sole && @present) ? results.first : results }
     end
 
     def respond_to_missing? _, _=false
