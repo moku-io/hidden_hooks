@@ -8,6 +8,13 @@
 ### Bug fixes
 )-->
 
+## 1.3.0 2025-03-03
+
+### New features
+
+- Added `sole` and `present` keyword parameter for hook invocation.
+- Made hook invocation return the result values.
+
 ## 1.2.0 2025-02-04
 
 ### New features
