@@ -46,12 +46,12 @@ module HiddenHooks
 
       if @present && hooks.empty?
         raise HiddenHooks::AtLeastOneHookRequired,
-              "There must be at least one hook `#{hook_name}` defined for class #{@klass}"
+              "There must be at least one hook `#{hook_name}` defined for class `#{@klass}`"
       end
 
       if @sole && hooks.size > 1
         raise HiddenHooks::SoleHookExceeded,
-              "There must be at most one hook `#{hook_name}` defined for class #{@klass}"
+              "There must be at most one hook `#{hook_name}` defined for class `#{@klass}`"
       end
 
       hooks
