@@ -132,6 +132,39 @@ class User
 end
 ```
 
+The results are returned as an array:
+
+```ruby
+def valid_password? password
+  HiddenHooks[User].valid_password?(self, password).all?
+end
+```
+
+You can enforce that at least one hook be present passing `present: true` to `HiddenHooks.[]`:
+
+```ruby
+HiddenHooks[User, present: true].valid_password?(self, password).all?
+# => There must be at least one hook `valid_password?` defined for class `User` (HiddenHooks::AtLeastOneHookRequired)
+```
+
+You can also enforce that no more than one hook be present passing `sole: true`:
+
+```ruby
+HiddenHooks[User, sole: true].valid_password?(self, password).all?
+# => There must be at most one hook `valid_password?` defined for class `User` (HiddenHooks::SoleHookExceeded)
+```
+
+`sole:` defaults to `false`, and `present` defaults to whatever value `sole` has, so by default nothing is checked, and if you pass `sole: true` both checks are performed.
+
+If both `sole:` and `present:` are true, then we can be certain that there is one and only one hook, so the single result value is unwrapped:
+
+```ruby
+HiddenHooks[URI].signature_code(uri)
+# => ["1234"]
+HiddenHooks[URI, sole: true].signature_code(uri)
+# => "1234"
+```
+
 #### Hook Definition
 
 Whenever you want to define a hook, you simply call `HiddenHooks.hook_up`. Inside the block, you can call any method and pass it a class and a block: the block will become a hook for that class.
