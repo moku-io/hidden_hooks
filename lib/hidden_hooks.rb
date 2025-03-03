@@ -9,7 +9,7 @@ module HiddenHooks
                instance_reader: false
 
   class SetUpProxy
-    private
+  private
 
     def method_missing hook, klass, context: nil, &block
       ::HiddenHooks.hooks[klass][hook] << if context.nil?
@@ -33,7 +33,7 @@ module HiddenHooks
       @hooks = ::HiddenHooks.hooks[klass]
     end
 
-    private
+  private
 
     def method_missing(hook, *args, **kwargs, &block)
       @hooks[hook].each { _1.call(*args, **kwargs, &block) }
@@ -44,7 +44,7 @@ module HiddenHooks
     end
   end
 
-  def self.hook_up(&block)
+  def self.hook_up &block
     SetUpProxy.new.instance_exec(&block)
   end
 
